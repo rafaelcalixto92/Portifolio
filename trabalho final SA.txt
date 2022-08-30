@@ -1,0 +1,233 @@
+create database Atlantis_Sistemas;
+
+use Atlantis_Sistemas;
+
+create table Biblioteca_Universitaria
+(
+Nome VARCHAR (19) not null,
+	Cidade VARCHAR (30) not null,
+		Bairro VARCHAR (23) not null,
+			Rua VARCHAR (29) not null,
+				Numero int not null,
+ 
+ primary key (Nome)
+);
+
+ create table Cadastro_Usuario
+ (
+Nome VARCHAR (19) not null,
+	CPF   int (20) Not Null,
+		telefone   int (20) Not Null,
+			Endereço  char(40)  Not Null,
+				Curso  varchar (28) Not Null,
+					data_Inicio date not null,
+						data_Termino date not null,
+  primary key (CPF)
+ );
+ create table Autor
+  (
+  Nome VARCHAR (19) not null,
+	Idade int not null,
+		Nacionalidade VARCHAR (29) not null,
+			QTA_livros int  not null,
+  primary key (Nome)
+  );
+
+  create table editora
+  (
+  CNPJ int not null,
+	  Nome_editora VARCHAR (29) not null,
+		endereço VARCHAR (40) not null,
+		  numero_comercial int not null,
+			conta_comercial VARCHAR (30) not null,
+			  QTA_funcionarios int not null,
+  primary key (Nome_editora)
+  );
+  
+  create table Cadastro_Obras
+ (
+Titulo_Obra VARCHAR (19) not null,
+	ISBN   int (11) Not Null,
+		Ano_Publicaçao  date Not Null,
+			Ediçao varchar (60) Not Null,
+				Editora VARCHAR (20) not null,
+					Autor VARCHAR (19) not null,
+						Classificaçao VARCHAR (20)  not null,
+							linguagem VARCHAR (17) not null,
+primary key (ISBN),
+foreign key (Autor) references Autor (Nome),
+foreign key (Editora) references editora (Nome_editora)
+  );
+  create table Emprestimo
+  (
+  Nome_Usuario VARCHAR (19) not null,
+	CPF int not null,
+		ISBN int not null,
+			data_Emprestimo date not null,
+				data_Devolucao date not null, 
+  primary key (Nome_Usuario),
+  foreign key (CPF) references Cadastro_Usuario(CPF),
+  foreign key (ISBN) references Cadastro_Obras(ISBN)
+  );
+
+  
+
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Paulo Aguiar',42,'Goiania',15);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Ana Clara',25,'Salvador',12);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Lorraine Souza',35,'Irece',13);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('João Silva',46,'Palmas',17);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Clarindo Rocha',21,'Santos',11);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('João Grande',35,'Belo Horizonte',9);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Rosalinda de Lurdes',62,'Rio de Janeiro',23);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Amanda Santos',57,'São Paulo',19);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Rosana Lima',19,'Espirito Santo',3);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Carlos Barbosa',79,'Araguari',45);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Antônio Amaro',28,'Brasilia',16);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Alexandre de Paula',39,'Caldas Novas',14);
+INSERT INTO autor (Nome, Idade, Nacionalidade, QTA_livros) VALUES ('Pedro Castro',55,'São José de Almeida',20);
+
+
+
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Central','Piracicaba','São Cosmo','Pau Brasil',124);
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Nova Dies','São Paulo','Sabios','Cinco',36);
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Brother','Sorocaba','Paulista','Beira Rio',84);
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Maracanã','Tocantins','Central','Cinquenta e Um',452);
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Tiradentes','Salvador','Viarinho','Parana',58);
+INSERT INTO biblioteca_universitaria (Nome, Cidade, Bairro, Rua, Numero) VALUES ('Onda de Conhecimento','Ipoema','Caramelo','Platão',1428);
+
+
+
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Carlos dos Santos',325241254,3599673184,'Rua Três 28','TI','1978/12/06','1982/05/24');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Ana Carolina da Silva',2145163598,34978659,'Rua Santos 298','Enfermagem','2001/08/06','2004/11/04');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Paulo Loiola Antunes',342657964,3894673125,'Rua Morta 87','Informatica','1999/03/16','2003/01/06');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Angela Barbosa Amaral',345784576,41964352164,'Rua Demócrito 14','Administração','1956/12/28','1960/04/19');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Leandro Guedes Lima',346875428,1137379468,'Rua Onze 49','Arquiteto','2000/01/09','2005/05/15');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Alice Silva Cardoso',345975421,2034346152,'Rua Bambolês 24','Engenharia','2015/10/04','2017/10/04');
+INSERT INTO cadastro_usuario (Nome,CPF, Telefone, Endereço, Curso, data_Inicio, data_Termino) VALUES ('Sheilla Camargo de Souza',978256134,31978426187,'Rua Brasil 502','Odontologia','1899/01/25','1901/04/13');
+
+
+
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES (2124546545,'Esquadra','Rua Onze 45',13216,'Esquadra@Edição',34);
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES  (2465456465,'Quadrante','Rua Santos 68',13485,'Quadrante@Edição',27);
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES (2132454458,'Dom Chaver','Rua Pedro Barbosa 24',346198,'DamChaver@Edição',98);
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES (9878984655,'Morais','Rua Amaral 17',27846,'Morais@Edição',465);
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES (3246575465,'Anterior','Rua Lourdes 1',34615,'Anterior@Edição',674);
+INSERT INTO editora (CNPJ, Nome_editora, endereço, numero_comercial, conta_comercial, QTA_funcionarios) VALUES (3785421567,'Viana','Rua Paulista 38',97643,'Viana@Edição',134);
+
+
+ 
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Pinoquio',2147483647,'1978/02/06','Paulo e Sara','Esquadra','João Grande','Desenho Animado','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Chapeuzinho Verde',47578557,'2000/05/30','Angelo e Antônio','Morais','Amanda Santos','Desenho Animado','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Rambo',34618726,'1978/02/06','Amanda e Pedro','Viana','Clarindo Rocha','Ação','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Naruto',34816754,'1998/12/25','Gabriel e Paula','Anterior','Pedro Castro','Desenho Animado','Inglês');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Peter Pan',34615276,'2015/02/03','Carla e Ana','Dom Chaver','Alexandre de Paula','Desenho Animado','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Diario de um Banana',34618572,'2003/11/31','Carlos e Aline','Esquadra','Carlos Barbosa','Desenho Animado','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Mentes Brilhantes',97461547,'2013/04/06','Carolina e Sheila','Dom Chaver','João Silva','Filosofia','Espanhol');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('A Arte da Guerra',34512794,'2022/08/29','Alice e Wilian','Quadrante','Amanda Santos','Drama','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Perdida em um Livro',37945863,'1982/12/04','Rosemeire e Samuel','Quadrante','Lorraine Souza','Desenho Animado','Inglês');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('A Culpa é das estrelas',97641615,'1967/10/13','Eduardo e Adriano','Anterior','Ana Clara','Desenho Animado','Português');
+INSERT INTO cadastro_obras (Titulo_Obra, ISBN, Ano_Publicaçao, Ediçao, Editora,Autor,Classificaçao,linguagem ) VALUES ('Rua do Medo',31549785,'2020/08/23','Joana e Lais','Quadrante','Clarindo Rocha','Desenho Animado','Português');
+
+
+
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Carlos dos Santos',325241254,2147483647,'2020/10/15','2020/10/30');
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Alice Silva Cardoso',345975421,47578557,'1999/12/02','1999/12/10');
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Leandro Guedes Lima',346875428,34618726,'1978/01/27','1978/01/31');
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Angela Barbosa Amaral',345784576,34816754,'2004/12/30','2005/01/04');
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Paulo Loiola Antunes',342657964,34615276,'2013/12/03','2013/12/20');
+INSERT INTO emprestimo (Nome_Usuario, CPF, ISBN, data_Emprestimo, data_Devolucao) VALUES ('Sheilla Camargo de Souza',978256134,34618572,'2015/06/24','2015/06/30');
+
+
+  -- 1. encontrar usuarios com iniciais da letra A em tabela emprestimo.
+  
+  select Nome_Usuario
+  from emprestimo 
+  where Nome_Usuario like'A%'; 
+-- 2.  Achar datas Ano publicação que sejam antes dos anos 2000. 
+
+select Ano_Publicaçao 
+from cadastro_obras 
+where Ano_Publicaçao  < '2000/05/30';
+
+-- 3. Quantos livros foram editados pela editora Dom Chaver?
+select Count(editora)
+from cadastro_obras 
+where editora = 'Dom Chaver' ;
+
+-- 4. Quantos livros foram cadastrados como Desenho Animado (classificação)?
+select Count(classificaçao)
+from cadastro_obras 
+where classificaçao = 'desenho animado' ;
+
+-- 5. Quantos usuarios foram cadastrados antes do ano 2000?
+select Count(data_inicio)
+from cadastro_usuario
+where data_inicio <= '2000/01/01' ;
+
+-- 6. Quantos livros foram escritos pelo autor João Grande?
+select Count(autor)
+from cadastro_obras 
+where autor = 'João Grande' ;
+
+-- 7. Qual o endereço da biblioteca universitaria Maracanã?
+select nome,Cidade, Bairro, Rua, Numero
+from biblioteca_universitaria
+where nome = 'maracanã' ;
+-- 8. Qual o nome do livro que foi emprestado a Leandro Guedes Lima ?
+select titulo_obra, nome_Usuario, cadastro_obras.isbn
+from emprestimo,cadastro_obras
+where emprestimo.isbn = '34618726' and cadastro_obras.isbn=emprestimo.isbn;
+
+-- 9 alunos com data de terminor abaixo dos anos 2000.
+
+select nome 'Alunos',
+data_inicio'data inicial',
+data_Termino 'data termino'
+from cadastro_usuario
+where data_termino <= '1999/02/05' ;
+
+-- 10 locais com letras iniciados com P, junto com nome de nome editora e conta comercial.
+
+select CNPJ 'CNPJ',
+Nome_editora 'Nome',
+conta_comercial 'Conta comercial',
+endereço 'Endereço'
+  from editora 
+  where endereço like'rua_p%'; 
+
+-- 11 cadastro de obras onde tenha linguagem português junto de editora quadrante e autor com inicial da letra A.  
+select *
+from cadastro_obras
+where linguagem = 'Português' and editora = 'quadrante' and Autor like 'A%';
+
+-- 12 A media de funcionarios por editoria.
+select qta_funcionarios,  AVG(qta_funcionarios)
+from editora;
+
+-- 13 Autores com idades menores que 30 anos.
+ 
+ select * 
+ from autor
+ where idade < 30 ;
+
+-- 14 menor quantidade de funcionarios da editoria.
+select  CNPJ 'CNPJ', Numero_comercial 'Numero Comercial',
+Min(qta_funcionarios) 
+from editora ;
+
+-- 15 total de livros na tabela autor
+select sum(qta_livros)
+from autor ;
+
+
+GRANT select ON  Atlantis_Sistemas.editora TO 'Renan';
+GRANT select ON  Atlantis_Sistemas.editora TO 'thiago';
+
+GRANT select ON Atlantis_Sistemas.cadastro_obras TO 'Amanda';
+GRANT select ON Atlantis_Sistemas.cadastro_obras TO 'thiago';
+
+
+GRANT all ON Atlantis_Sistemas.* TO 'Leonardo' WITH GRANT OPTION;
+GRANT select, insert, update ON Atlantis_Sistemas.empresrtimo TO 'thiago';
+
+GRANT all ON cadastro_Usuario TO ' Norton'WITH GRANT OPTION;

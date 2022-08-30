@@ -1,0 +1,10 @@
+-- 1. encontrar usuarios com iniciais da letra A em tabela emprestimo.
+  
+  select Nome_Usuario
+  from emprestimo 
+  where Nome_Usuario like'A%'; 
+-- 2.  Achar datas Ano publicação que sejam antes dos anos 2000. 
+
+select Ano_Publicaçao 
+from cadastro_obras 
+where Ano_Publicaçao  < '2000/05/30';
